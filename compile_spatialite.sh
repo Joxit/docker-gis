@@ -22,7 +22,6 @@ sudo apt-get -qq install -y fossil git-core;
 # install shared dependencies
 sudo apt-get -y install \
   zlib1g-dev \
-  libproj-dev \
   libgeos-dev \
   libxml2-dev \
   libexpat1-dev \

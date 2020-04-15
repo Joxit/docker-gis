@@ -1,5 +1,5 @@
 # base image
-FROM ubuntu:19.04
+FROM debian:buster
 
 # configure env
 ENV DEBIAN_FRONTEND noninteractive
@@ -33,6 +33,10 @@ ENV USER docker
 # compile sqlite3
 COPY compile_sqlite3.sh /service/gis/
 RUN ./compile_sqlite3.sh && sudo rm -rf /service/gis/* /var/lib/apt/lists/*
+
+# compile proj
+COPY compile_proj4.sh /service/gis/
+RUN ./compile_proj4.sh && sudo rm -rf /service/gis/* /var/lib/apt/lists/*
 
 # compile spatialite
 COPY compile_spatialite.sh /service/gis/

@@ -9,8 +9,9 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd );
 # install the latest version of protozero
 # https://github.com/mapbox/protozero
 
+sudo apt-get update;
 # install dependencies
-sudo apt-get -y install cmake
+sudo apt-get -y install cmake curl
 
 # clean up
 rm -rf $DIR/tmp;
@@ -19,9 +20,8 @@ mkdir -p $DIR/tmp/proj4;
 
 # make protozero
 cd $DIR/tmp/proj4;
-curl -O https://launchpad.net/ubuntu/+archive/primary/+files/proj_4.9.3.orig.tar.gz;
-tar tar xvfz proj_4.9.3.orig.tar.gz;
-cd proj-4.9.3;
+curl -sSL https://github.com/OSGeo/PROJ/archive/6.3.1.tar.gz | tar xz --strip-component=1;
+./autogen.sh
 ./configure;
 make -j8;
 sudo make install;
